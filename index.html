@@ -5,6 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Congreso de Enfermería 2025</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: url('img/fondo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      z-index: -1;
+    }
+
+    .imagen-seccion {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .imagen-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -16,7 +47,7 @@
         <li><a href="#vision">Visión</a></li>
         <li><a href="#objetivos">Objetivos</a></li>
         <li><a href="#mapa">Mapa</a></li>
-        <li><a href="#cronograma de actividades">Cronograma</a></li>
+        <li><a href="#cronograma de actividades">Cronograma de actividades</a></li>
         <li><a href="#conferencias">Conferencias</a></li>
         <li><a href="#info">Información</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -89,6 +120,20 @@
   <footer>
     <p>&copy; 2025 Congreso Nacional de Enfermería. Todos los derechos reservados.</p>
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('imagen-visible');
+        }
+      });
+    });
+
+    document.querySelectorAll('.imagen-seccion').forEach(img => {
+      observer.observe(img);
+    });
+  </script>
 </body>
 </html>
 
