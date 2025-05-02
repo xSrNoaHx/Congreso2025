@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      background: url('imagen f.jpeg') no-repeat center center fixed;
+      background: url('img/fondo.jpg') no-repeat center center fixed;
       background-size: cover;
       position: relative;
       margin: 0;
       font-family: Arial, sans-serif;
     }
-  
+
     body::before {
       content: '';
       position: fixed;
@@ -24,78 +24,114 @@
       background-color: rgba(255, 255, 255, 0.8);
       z-index: -1;
     }
-  
+
     header {
-      background-color: #005b96;
+      background-color: #003366;
       color: white;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      height: 70px;
+      flex-wrap: wrap;
     }
-  
-    header img {
+
+    .logo {
       height: 50px;
-      margin-right: 20px;
     }
-  
-    header h1 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+
+    h1 {
+      text-align: center;
+      flex: 1;
       margin: 0;
-      font-size: 1.8em;
-      white-space: nowrap;
+      font-size: 1.5em;
     }
-  
-    nav ul {
+
+    nav {
+      position: relative;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+    }
+
+    ul {
       list-style: none;
-      display: flex;
-      margin: 0;
       padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
     }
-  
-    nav ul li {
-      margin: 0 10px;
-    }
-  
-    nav ul li a {
+
+    ul li a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
-  
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      ul {
+        display: none;
+        flex-direction: column;
+        background-color: #003366;
+        position: absolute;
+        right: 0;
+        top: 60px;
+        width: 200px;
+        z-index: 10;
+        padding: 10px;
+      }
+
+      ul.show {
+        display: flex;
+      }
+    }
+
     .imagen-seccion {
+      max-width: 100%;
+      width: 600px;
+      height: auto;
+      display: block;
+      margin: 20px auto;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 1s ease, transform 1s ease;
     }
-  
+
     .imagen-visible {
       opacity: 1;
       transform: translateY(0);
     }
-  
-    main {
-      padding-top: 20px;
-    }
   </style>
-  
 </head>
 <body>
   <header>
-    <img src="logo.jpg" alt="Logo del Congreso">
+    <img src="img/logo.png" alt="Logo del Congreso" class="logo">
     <h1>Congreso de Enfermería 2025</h1>
     <nav>
-      <ul>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul id="menu">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#objetivos">Objetivos</a></li>
         <li><a href="#mapa">Mapa</a></li>
-        <li><a href="#cronograma">Cronograma</a></li>
+        <li><a href="#cronograma de actividades">Cronograma</a></li>
       </ul>
     </nav>
   </header>
@@ -104,19 +140,19 @@
     <section id="inicio">
       <h2>Bienvenidos al Congreso de Enfermería 2025</h2>
       <p>Un evento para compartir conocimientos, experiencias y formar conexiones significativas entre profesionales y estudiantes del área de la salud.</p>
-      <img src="img 1.jpg" alt="Bienvenida al congreso" class="imagen-seccion">
+      <img src="img/inicio.jpg" alt="Bienvenida al congreso" class="imagen-seccion">
     </section>
 
     <section id="mision">
       <h2>Misión</h2>
       <p>Organizar un congreso de enfermería que promueva principalmente el intercambio de conocimientos, experiencias y habilidades entre profesionales y estudiantes de enfermería, con la finalidad de elevar la capacitación y actualización mediante docencias con temas innovadores que garanticen la calidad en la atención humana. Es importante impactar positivamente en la profesión al ofrecer contenido de alta calidad impartido por expertos, creando un espacio que potencie el aprendizaje teórico y práctico, a través de conferencias, talleres y actividades interactivas donde las relaciones interpersonales y el trabajo en equipo sean pilares para mejorar y transformar el empoderamiento a los futuros enfermeros y enfermeras, permitiéndoles desarrollar sus habilidades de liderazgo, aprendizaje e investigación para que puedan contribuir al bienestar de cada individuo, comunidad y a cada sistema de salud.</p>
-      <img src="img 2.jpg" alt="Misión del congreso" class="imagen-seccion">
+      <img src="img/mision.jpg" alt="Misión del congreso" class="imagen-seccion">
     </section>
 
     <section id="vision">
       <h2>Visión</h2>
       <p>Buscamos capacitar y formar al grupo de estudiantes de enfermería promoviendo la innovación y la excelencia en el cuidado de la salud, proporcionando un entorno donde se puedan adquirir las competencias necesarias para enfrentar los retos presentes y futuros. Queremos inspirar a la próxima generación de profesionales de la salud a tomar el liderazgo en la transformación de la salud mundial, aplicando el poder de su vocación para cambiar vidas y comunidades, con un enfoque dirigido a mejorar el sistema de salud.</p>
-      <img src="img 3.jpg" alt="Visión del congreso" class="imagen-seccion">
+      <img src="img/vision.jpg" alt="Visión del congreso" class="imagen-seccion">
     </section>
 
     <section id="objetivos">
@@ -126,7 +162,7 @@
       <h3>Objetivos Específicos</h3>
       <ul>
         <li>Brindar formación teórica y práctica sobre las últimas tendencias, investigaciones y avances en el campo de la enfermería, para que los estudiantes puedan aplicarlos en su futura práctica profesional y en el ámbito laboral.</li>
-        <li>Establecer la importancia de influir de manera positiva en el cuidado integral del paciente y contribuir de manera eficaz, eficiente y oportuna en las mejoras de nuestro sistema sanitario a través de la investigación y educación continua de nuestros estudiantes.</li>
+        <li>Establecer la importancia de influir de manera positiva en cuidado integral del paciente y contribuir de manera eficaz, eficiente y oportuna en las mejoras de nuestro sistema sanitario a través de la investigación y educación continua de nuestros estudiantes.</li>
         <li>Desarrollar habilidades de liderazgo y toma de decisiones éticas, preparando a los estudiantes para asumir roles protagónicos en el cuidado de la salud y la gestión de equipos de trabajo.</li>
         <li>Promover el trabajo en equipo y la colaboración interdisciplinaria fortaleciendo la capacidad de los futuros profesionales para interactuar eficazmente con otros profesionales de la salud en el cuidado integral de los pacientes.</li>
         <li>Impulsar el compromiso social y profesional de los estudiantes, con la finalidad de sensibilizarlos sobre la importancia del papel de la enfermería en la transformación de la salud global.</li>
@@ -137,11 +173,11 @@
     <section id="mapa">
       <h2>Mapa</h2>
       <p>Ubicación del evento:</p>
-      <img src="mapa.jpeg" alt="Mapa del lugar del evento" class="imagen-seccion">
+      <img src="img/mapa.jpg" alt="Mapa del lugar del evento" class="imagen-seccion">
     </section>
 
-    <section id="cronograma">
-      <h2>Cronograma de Actividades</h2>
+    <section id="cronograma de actividades">
+      <h2>Cronograma de actividades</h2>
       <ul>
         <li><strong>Día 1:</strong> Registro y apertura</li>
         <li><strong>Día 2:</strong> Conferencias y talleres</li>
@@ -149,7 +185,7 @@
       </ul>
       <img src="img/cronograma.jpg" alt="Cronograma del evento" class="imagen-seccion">
     </section>
-    
+
     <section id="info">
       <h2>Información General</h2>
       <p>Lugar: Hotel Gran Evenia Bijao</p>
@@ -162,6 +198,17 @@
   </footer>
 
   <script>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('show');
+    }
+
+    // Ocultar menú cuando se hace clic en un enlace (en móvil)
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('menu').classList.remove('show');
+      });
+    });
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
