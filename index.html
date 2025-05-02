@@ -198,28 +198,27 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('menu').classList.toggle('show');
+  function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('show');
+  }
+
+  // Ocultar menú cuando se hace clic en un enlace (solo en pantallas pequeñas)
+  document.querySelectorAll('#menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.getElementById('menu');
+      if (window.innerWidth <= 768) {
+        menu.classList.remove('show');
+      }
+    });
+  });
+
+  // Cierra el menú si se cambia el tamaño de pantalla a grande
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      document.getElementById('menu').classList.remove('show');
     }
-
-    // Ocultar menú cuando se hace clic en un enlace (en móvil)
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('menu').classList.remove('show');
-      });
-    });
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('imagen-visible');
-        }
-      });
-    });
-
-    document.querySelectorAll('.imagen-seccion').forEach(img => {
-      observer.observe(img);
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
